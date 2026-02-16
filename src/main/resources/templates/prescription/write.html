@@ -22,11 +22,7 @@
 			th:value="${prescription.appointment != null ? prescription.appointment.id : (debugAppointment != null ? debugAppointment.id : '')}"/>
 		<input type="hidden" th:field="*{patient.id}" 
 			th:value="${prescription.patient != null ? prescription.patient.id : (debugPatient != null ? debugPatient.id : '')}"/>
-<!--
-        <p><strong>Appointment ID:</strong> <span th:text="*{appointment.id}"></span></p>
-        <p><strong>Patient:</strong> <span th:text="*{patient.name}"></span></p>
-		-->
-		
+
 		<p><strong>Appointment ID:</strong>
 			<span th:text="${prescription.appointment != null && prescription.appointment.id != 0? prescription.appointment.id : (debugAppointment != null ? debugAppointment.id : 'NOT SET')}"></span>
 		</p>

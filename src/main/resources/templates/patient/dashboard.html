@@ -27,16 +27,6 @@
 	         <div th:if="${#lists.isEmpty(appointments)}">
 	            <p>No appointments found.</p>
 	         </div>
-
-			 <!-- Show when list is not empty
-		    <ul th:if="${!#lists.isEmpty(appointments)}" style="list-style-type: none; padding: 0;">
-		        <li th:each="a : ${appointments}" style="margin-bottom: 10px;">
-		            <strong>Date & Time:</strong><span th:text="${a.datetime}"></span> |
-	                <strong>Doctor:</strong> Dr. <span th:text="${a.doctor != null? a.doctor.name : 'N/A'}"></span> |
-	                <strong>Status:</strong> <span th:text="${a.status}"></span>
-		        </li>
-		    </ul>
-			-->
 			
 			<!-- Appointment list -->
 			<ul th:if="${appointments != null and !#lists.isEmpty(appointments)}" style="list-style-type: none; padding: 0; margin-top: 15px;">
@@ -68,33 +58,8 @@
 				</li>
 			</ul>
 
-	        <!-- Prescription Section 
-		    <h3>Your Prescriptions</h3>
-			
-	        <div th:if="${#lists.isEmpty(prescriptions)}">
-	            <p>No prescriptions found.</p>
-	        </div>
-			
-		    <ul th:if="${!#lists.isEmpty(prescriptions)}" style="list-style-type: none; padding: 0;">
-		        <li th:each="p : ${prescriptions}" style="margin-bottom: 10px;"> 
-		            <strong>Medicine:</strong> <span th:text="${p.medicine}"></span> | 
-	                <strong>Dosage:</strong> <span th:text="${p.dosage}"></span>
-		        </li>
-		    </ul> -->
-
 	        <!-- Lab Reports Section -->
 		    <h3>Your Lab Reports</h3>
-			<!--
-	        <div th:if="${#lists.isEmpty(labReports)}">
-	            <p>No lab reports found. </p>
-	        </div>
-			
-		    <ul th:if="${!#lists.isEmpty(labReports)}" style="list-style-type: none; padding: 0;">
-		        <li th:each="r : ${labReports}" style="margin-bottom: 10px;">
-		            <strong>Report Name: </strong> <span th:text="${r.reportName}"></span> | 
-					<strong>Descripton:</strong><span th:text="${r.description}"></span>
-		        </li>
-		    </ul>-->
 			
 			<div th:if="${#lists.isEmpty(labReports)}">
 			<p>No lab reports found.</p>
@@ -105,17 +70,14 @@
 			style="list-style-type:none;padding:0;">
 
 
-			<li th:each="r : ${labReports}"
-			style="margin-bottom:10px;">
-
-
-			<strong>Report Type:</strong>
-			<span th:text="${r.reportType}"></span><br>
-
-
-		<!--<strong>Description:</strong>
-			<span th:text="${r.description}"></span>-->	
-			</li>
+				<li th:each="r : ${labReports}"
+				style="margin-bottom:10px;">
+	
+	
+				<strong>Report Type:</strong>
+				<span th:text="${r.reportType}"></span><br>
+				
+				</li>
 			</ul>
 	
 			</div>

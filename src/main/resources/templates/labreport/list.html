@@ -10,53 +10,20 @@
 <body>
 	
 	<div th:replace="~{fragments/header :: header}"></div>
-<!--		
-		<div class="content">
-		
-			<h2>Lab Reports</h2>
--->
-	        <!-- Display message if no reports -->
-<!--	         <div th:if="${#lists.isEmpty(labReports)}">
-	            <p>No lab reports found.</p>
-         </div>
- -->	
-	         <!-- Liat all reports -->
-<!--	        <ul th:if="${!#lists.isEmpty(labReports)}">
-	            <li th:each="r : ${labReports}">
-	                <strong>Report Name:</strong> <span th:text="${r.reportType}"></span> | 
-	                <strong>Descripton:</strong> <span th:text="${r.description}"></span>
-	            </li>
-	        </ul>
 
-	        <hr>
 
-	        <h3>Upload New Report</h3>
-	        <form th:action="@{/labreport/upload}" method="post" th:object="${labReport}">
-	            <label>Report Name :</label>
-	            <input type="text" th:field="*{reportName}" required> <br><br>
-	            <label>Descripton:</label>
-	            <input type="text" th:field="*{description}" required> <br><br>
--->	 
-	            <!-- hidden patient id (auto - filled from controller/session) -->
-<!--           <input type="hidden" th:field="*{patient.id}">
-	            <button type="submit">Upload</button>
-	        </form>
-			
-	    </div>
--->
-
-<h2>Lab Reports</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Report Type</th>
-                    <th>Description</th>
-                    <th>File</th>
-                    <th>Date</th>
-                    
-                </tr>
-            </thead>
+	<h2>Lab Reports</h2>
+	
+	    <table>
+	        <thead>
+	            <tr>
+	                <th>Report Type</th>
+	                <th>Description</th>
+	                <th>File</th>
+	                <th>Date</th>
+	                
+	            </tr>
+	        </thead>
 			
 			<tbody>
 	            <tr th:each="report : ${labReports}">
@@ -65,16 +32,13 @@
 	                <td>
 	                    <a th:href="${report.filePath}" target="_blank">View</a>
 	                </td>
-	           <!--     <td th:text="${report.reportDate}">2026-01-01</td>-->
 	            </tr>
-
+	
 	            <tr th:if="${labReports.size() == 0}">
 	                <td colspan="4">No lab reports found</td>
 	            </tr>
 	        </tbody>	
-        </table>
-
-        		
+	    </table>
 
 		    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
