@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/homeDashboard.css}">
+</head>
+<body>
+	
+	<!-- Include common header-->
+	<div th:replace="~{fragments/header :: header}"></div>
+
+    <section class="hero">
+        <h2>Your Health, Our Priority</h2>
+        <p>Book appointments with trusted doctors easily and quickly.</p>
+        <a th:href="@{/appointment/book}" class="btn">Book Now</a>
+    </section>
+
+	<!-- Include footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

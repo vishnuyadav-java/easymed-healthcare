@@ -1,0 +1,96 @@
+/* ===== Page Background ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* ===== Page Title ===== */
+h2 {
+    text-align: center;
+    margin: 30px 0 20px 0;
+    color: #007bff;
+}
+
+/* ===== Table Container ===== */
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ===== Table Header ===== */
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th {
+    padding: 14px;
+    text-align: left;
+    font-size: 15px;
+}
+
+/* ===== Table Body ===== */
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* ===== Zebra Striping ===== */
+tbody tr:nth-child(even) {
+    background-color: #f9fbff;
+}
+
+/* ===== Hover Effect ===== */
+tbody tr:hover {
+    background-color: #eef4ff;
+}
+
+/* ===== View Button ===== */
+td a {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+td a:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Empty Row Styling ===== */
+td[colspan] {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    padding: 20px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+
+    th, td {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    td a {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}

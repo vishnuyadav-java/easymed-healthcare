@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/doctorDashboard.css}">
+</head>
+<body>
+	
+	<!-- Include common header-->
+	    <div th:replace="~{fragments/header :: header}"></div>
+		
+		<div class="content">
+		
+			 <h2>Welcome to Doctor Dashboard</h2>
+	
+		        <!-- Appointment Section -->
+			    <h3>Upcoming Appointments</h3>
+	
+		        <div th:if="${#lists.isEmpty(appointments)}" >
+		            <p>No appointments scheduled.</p>
+		        </div>
+	
+			    <ul th:if="${!#lists.isEmpty(appointments)}" style="list-style-type: none; padding: 0;">
+			        <li th:each="a : ${appointments}" style="margin-bottom: 10px;">
+		                <strong>Date:</strong> <span th:text="${a.datetime}"></span> <br>
+		                <strong>Patient:</strong> <span th:text="${a.patient.name}"></span> <br>
+		                <a th:href="@{/prescription/write/{appointmentId}(appointmentId=${a.id})}">Add Prescription</a>
+						&nbsp;|&nbsp;
+						<a th:href="@{/prescription/appointment/{appointmentId}(appointmentId=${a.id})}">View Prescription</a>
+						&nbsp;|&nbsp;
+						<a th:href="@{/labReport/upload/{patientId}(patientId=${a.patient.id})}">Upload Lab Report</a>
+						&nbsp;|&nbsp;
+						<a th:href="@{/labReport/patient/{patientId}(patientId=${a.patient.id})}">View Lab Report</a>
+			        </li>
+			    </ul>
+	
+		        <hr>
+	
+		        <!-- Optional: Prescriptuons overview (if add support later)-->
+		        <!--
+		        <h3>Recent Prescription</h3>
+		         <ul th:each="p : @{prescriptions}">
+		            <li>
+		                <span th:text="${p.medicine}"></span> prescribed to
+		                <span th:text="${p.appointment.patient.name}"></span>
+		            </li>
+		         </ul>
+		         -->
+			 
+			 </div>
+
+	         <!-- Include footer -->
+		    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html> 

@@ -1,0 +1,106 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Body Styling ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    min-height: 100vh;
+}
+
+/* ===== Main Content Box ===== */
+.content {
+    width: 100%;
+    max-width: 450px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Heading ===== */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #007bff;
+}
+
+/* ===== Error Message ===== */
+.error-message {
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: red;
+}
+
+
+/* ===== Form Labels ===== */
+label {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+/* ===== Inputs & Select ===== */
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Focus Effect */
+input:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* ===== Button ===== */
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Login Link ===== */
+p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+    .content {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+}

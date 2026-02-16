@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyMed</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<header th:fragment="header">
+		<nav>
+            <a th:href="@{/}">🏠 Home</a> |
+            <a th:href="@{/login}">Login</a> |
+            <a th:href="@{/register}">Register</a> |
+            <a th:href="@{/patient/dashboard}">Patient Dashboard</a> |
+            <a th:href="@{/doctor/dashboard}">Doctor Dashboard</a> |
+            <a th:href="@{/appointments}">Appointments</a> |
+            <a th:href="@{/labreports}">LabReports</a>
+        </nav>
+        <hr>
+        
+	</header>

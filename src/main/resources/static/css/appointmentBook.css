@@ -1,0 +1,155 @@
+/* ===== Page Background ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* ===== Main Content Container ===== */
+.content {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Headings ===== */
+.content h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.content h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+    color: #333;
+}
+
+/* ===== Messages ===== */
+.success-msg {
+    background-color: #e6f9ec;
+    color: #1e7e34;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.error-msg {
+    background-color: #fdeaea;
+    color: #c82333;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+
+/* ===== Appointment List ===== */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9fbff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e6f0;
+    transition: 0.3s ease;
+}
+
+li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+li strong {
+    color: #444;
+}
+
+/* ===== Links ===== */
+li a {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+li a:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Divider ===== */
+hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+/* ===== Form Styling ===== */
+form {
+    margin-top: 15px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* ===== Button ===== */
+button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .content {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    li {
+        font-size: 14px;
+    }
+}

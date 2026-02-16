@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Prescription</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/prescripionWrite.css}">
+</head>
+<body>
+	
+	<!-- Include common header-->
+	 <div th:replace="~{fragments/header :: header}"></div>
+			
+    <h2>Write Prescription</h2>
+	
+<!--	<pre th:text="${prescription}"></pre>	-->
+
+	<form th:action="@{/prescription/save}" method="post" th:object="${prescription}">
+
+		<input type="hidden" th:field="*{appointment.id}" 
+			th:value="${prescription.appointment != null ? prescription.appointment.id : (debugAppointment != null ? debugAppointment.id : '')}"/>
+		<input type="hidden" th:field="*{patient.id}" 
+			th:value="${prescription.patient != null ? prescription.patient.id : (debugPatient != null ? debugPatient.id : '')}"/>
+<!--
+        <p><strong>Appointment ID:</strong> <span th:text="*{appointment.id}"></span></p>
+        <p><strong>Patient:</strong> <span th:text="*{patient.name}"></span></p>
+		-->
+		
+		<p><strong>Appointment ID:</strong>
+			<span th:text="${prescription.appointment != null && prescription.appointment.id != 0? prescription.appointment.id : (debugAppointment != null ? debugAppointment.id : 'NOT SET')}"></span>
+		</p>
+		
+		<p><strong>Patient:</strong>
+			<span th:text="${prescription.patient != null && prescription.patient.name != null ? prescription.patient.name : (debugPatient != null ? debugPatient : 'NOT SET')}"></span>
+		</p>
+		
+        <label>Prescription Details:</label> <br>
+        <textarea th:field="*{content}" rows="6" cols="60" placeholder="Enter medicine, dosage, and notes"></textarea> <br><br>
+
+        <button type="submit">Save Prescription</button>
+    </form>
+	
+	<!-- Include footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+    
+</body>
+</html>

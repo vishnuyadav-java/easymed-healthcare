@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Report</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/labreportUpload.css}">
+
+</head>
+<body>
+	
+	<div class="container">
+	    <h2>Upload Lab Report</h2>
+	    <form th:action="@{/labReport/upload}" th:object="${labReport}" method="post">
+	
+	        <!-- Hidden Patient ID -->
+	        <input type="hidden" th:field="*{patient.id}"/> 
+	
+	        <!--  Report Type -->
+	        <label>Report Type</label>
+	        <input type="text" th:field="*{reportType}" placeholder="e.g. Blood Test" required/>
+	          
+	        <!-- File Path -->
+	        <label>File Path / URL</label>
+	        <input type="text" th:field="*{filePath}" placeholder="/uploads/report.pdf" required/> 
+	
+	        <button type="submit">Upload Report</button>
+	    </form>
+	
+	    <br>
+	
+	    <a th:href="@{/labReport/patient/{id}(id=${patientId})}">Back to Lab Reports</a>
+	
+	</div>
+        
+</body>
+</html>

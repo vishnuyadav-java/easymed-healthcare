@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Details</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/prescriptionView.css}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	    <div class="content">
+	        <h1>Prescription Details</h1>
+	        
+	        <!-- Diasplay prescription details if avialable-->
+	        <div th:if="${prescription != null}">
+	            <p><strong>Prescription ID:</strong> <span th:text="${prescription.id}"></span></p>
+	            <p><strong>Appointment ID:</strong> <span th:text="${prescription.appointment.id}"></span></p>
+	            <p><strong>Doctor Name:</strong> <span th:text="${prescription.appointment != null and prescription.appointment.doctor != null ? prescription.appointment.doctor.name : 'Not assigned'}"></span></p>
+	            <p><strong>Patient Name:</strong> <span th:text="${prescription.appointment != null and prescription.appointment.patient != null ? prescription.appointment.patient.name : 'N/A'}"></span></p>
+	        </div>
+			
+			<hr>
+			
+			<h3>Prescription</h3>
+			<div style="border: 1px solid #ccc; padding: 10px;">
+				<pre th:text="${prescription.content}"></pre>
+			</div>
+
+	        <!-- If no prescription data -->
+	        <div th:if="${prescription == null}">
+	            <p>No prescription data available.</p>
+	        </div>
+
+	        
+	        <a th:href="@{/patient/dashboard}">Back to Dashboard</a>
+			<a th:href="@{/appointment/{id}(id=${prescription.appointment.id})}">View Appointment</a>
+
+	        <div th:replace="~{fragments/footer :: footer}"></div>
+	    </div>
+</body>
+</html>

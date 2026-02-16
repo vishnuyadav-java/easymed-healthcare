@@ -1,0 +1,100 @@
+/* ===== Page Background ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Main Content Container ===== */
+.content {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Headings ===== */
+.content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #007bff;
+}
+
+.content h3 {
+    margin-bottom: 15px;
+    color: #333;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+}
+
+/* ===== Appointment List ===== */
+.content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.content li {
+    background-color: #f9fbff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e6f0;
+    transition: 0.3s ease;
+}
+
+.content li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Labels ===== */
+.content strong {
+    color: #444;
+}
+
+/* ===== Action Links Styled as Buttons ===== */
+.content a {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.content a:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Empty Appointment Message ===== */
+.content p {
+    color: #777;
+    font-style: italic;
+}
+
+/* ===== Divider ===== */
+hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .content {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .content a {
+        display: block;
+        margin-bottom: 8px;
+    }
+}

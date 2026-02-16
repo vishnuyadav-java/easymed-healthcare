@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/appointmentBook.css}">
+</head>
+<body>
+	
+	<!-- Common header fragment-->
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="content">
+	    <h2>Appointments</h2>
+	    
+	       <!-- Display success/error messages if needed -->
+	        <div th:if="${message}" th:text="${message}" class="success-msg"></div>
+	        <div th:if="${error}" th:text="${error}" class="error-msg"></div>
+
+	        <!-- List all appointments-->
+	         <div th:if="${#lists.isEmpty(appointments)}">
+	           <p>No appointments found.</p>
+	         </div>
+
+	         <ul th:if="${!#lists.isEmpty(appointments)}">
+	           <li th:each="a :${appointments}">
+	               <strong>Date:</strong> <span th:text="${a.datetime}"></span> |
+	               <strong>Status:</strong> <span th:text="${a.status}"></span> |
+	               <strong>Doctor:</strong> <span th:text="${a.doctor != null ? a.doctor.name : 'N/A'}"></span> |
+	               <strong>Patient:</strong> <span th:text="${a.patient != null ? a.patient.name : 'N/A'}"></span> 
+	               <br>
+
+	               <!-- Optional: Link to prescription or lab report -->
+	                <a th:if="${a.id}" th:href="@{/prescription/write/{id}(id=${a.id})}">Add Prescription</a>
+				<!--	<a th:if="${a.id}" th:href="@{/prescription/appointment/{id}{(id=${a.id})}">View Prescription</a>-->
+	           </li>
+	         </ul>
+
+	         <hr>
+	
+		    <h3>Book New Appointment</h3>
+	
+		       <!-- Appointment booking form -->
+		    <form th:action="@{/appointment/book}" method="post" th:object="${appointment}">
+		        <label>Date & Time:</label>
+		        <input type="datetime-local" th:field="*{datetime}" required> <br><br>
+				
+				<label>Status: </label>
+	            <input type="text" th:field="*{status}" placeholder="e.g., Schedule" required> <br><br>
+	           
+			    <label>Doctor:</label>
+	            <select name="doctorId" required>
+	               <option value="disabled selected">Select Doctor</option>
+				   <option value="1">Dr. Sharma - Cardiologist</option>
+                   <option value="2">Dr. Priya - Dermatologist</option>
+                   <option value="3">Dr. Arjun - Orthopedic</option>
+                   <option value="4">Dr. Meena - Neurologist</option>
+                   <option value="5">Dr. Rajesh - General Physician</option>
+	               <option th:each="d : ${doctors}" th:value="${d.id}" th:text="${d.name + ' - ' + d.specialization}"></option>
+	           </select> <br><br>
+
+	            <button type="submit">Book Appointment</button>
+				
+		        
+		    </form>
+			
+			<hr>
+		
+		</div>
+
+		<!-- Common footer fragment-->
+	    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>  

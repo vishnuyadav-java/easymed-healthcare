@@ -1,0 +1,117 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Body ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+}
+
+/* ===== Main Content ===== */
+.content {
+    width: 85%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Headings ===== */
+h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* ===== Buttons ===== */
+a {
+    text-decoration: none;
+}
+
+a[href="/appointment/list"] {
+    display: inline-block;
+    margin-bottom: 15px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+a[href="/appointment/list"]:hover {
+    background-color: #0056b3;
+}
+
+/* ===== Appointment Card ===== */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9fbff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    transition: 0.3s;
+}
+
+li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Strong Labels ===== */
+strong {
+    color: #2c3e50;
+}
+
+/* ===== Prescription Links ===== */
+li a {
+    display: inline-block;
+    margin-top: 6px;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #007bff;
+    font-weight: 500;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Empty Message ===== */
+p {
+    margin: 10px 0;
+    color: #777;
+    font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    li {
+        font-size: 14px;
+    }
+}

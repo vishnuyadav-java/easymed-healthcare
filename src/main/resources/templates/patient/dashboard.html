@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+	<link rel="stylesheet" th:href="@{/css/patientDashboard.css}">
+
+</head>
+<body>
+	
+	<div th:replace="~{fragments/header ::header}"></div>
+		
+		<div class="content">
+		   
+		     <h2>Welcome, <span th:text="${patient.name}">Patient</span>!</h2>
+
+	         <!-- Book Appointment  -->
+		     <h3>Your Appointments</h3>
+			 
+			 <!-- Book new Appointment Button-->
+			 <a href="/appointment/list" style="display: inline-block; background: #007bff; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px;">
+				Book New Apppointment
+			 </a>
+			 
+			 <!-- Show when list is empty (No appointment)-->
+	         <div th:if="${#lists.isEmpty(appointments)}">
+	            <p>No appointments found.</p>
+	         </div>
+
+			 <!-- Show when list is not empty
+		    <ul th:if="${!#lists.isEmpty(appointments)}" style="list-style-type: none; padding: 0;">
+		        <li th:each="a : ${appointments}" style="margin-bottom: 10px;">
+		            <strong>Date & Time:</strong><span th:text="${a.datetime}"></span> |
+	                <strong>Doctor:</strong> Dr. <span th:text="${a.doctor != null? a.doctor.name : 'N/A'}"></span> |
+	                <strong>Status:</strong> <span th:text="${a.status}"></span>
+		        </li>
+		    </ul>
+			-->
+			
+			<!-- Appointment list -->
+			<ul th:if="${appointments != null and !#lists.isEmpty(appointments)}" style="list-style-type: none; padding: 0; margin-top: 15px;">
+				
+				<li th:each="a : ${appointments}" style="margin-bottom: 15x; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+					
+					<strong>Date & Time:</strong>
+					<span th:text="${a.datetime}"></span><br>
+					
+					<strong>Doctor:</strong>
+					<span th:text="${a.doctor != null ? a.doctor.name : 'N/A'}"></span><br>
+					
+					<strong>Status:</strong>
+					<span th:text="${a.status}"></span><br>
+					
+					<!-- Prescription action -->
+					<div style="margin-top:6px;">
+					<a th:if="${a.prescription != null}"
+					th:href="@{/prescription/appointment/{id}(id=${a.id})}">
+					View Prescription
+					</a>
+					<a th:href="@{/labReport/patient/{id}(id=${patient.id})}">View All Lab Reports</a>
+
+
+					<span th:if="${a.prescription == null}">
+					Prescription not available
+					</span>
+					</div>
+				</li>
+			</ul>
+
+	        <!-- Prescription Section 
+		    <h3>Your Prescriptions</h3>
+			
+	        <div th:if="${#lists.isEmpty(prescriptions)}">
+	            <p>No prescriptions found.</p>
+	        </div>
+			
+		    <ul th:if="${!#lists.isEmpty(prescriptions)}" style="list-style-type: none; padding: 0;">
+		        <li th:each="p : ${prescriptions}" style="margin-bottom: 10px;"> 
+		            <strong>Medicine:</strong> <span th:text="${p.medicine}"></span> | 
+	                <strong>Dosage:</strong> <span th:text="${p.dosage}"></span>
+		        </li>
+		    </ul> -->
+
+	        <!-- Lab Reports Section -->
+		    <h3>Your Lab Reports</h3>
+			<!--
+	        <div th:if="${#lists.isEmpty(labReports)}">
+	            <p>No lab reports found. </p>
+	        </div>
+			
+		    <ul th:if="${!#lists.isEmpty(labReports)}" style="list-style-type: none; padding: 0;">
+		        <li th:each="r : ${labReports}" style="margin-bottom: 10px;">
+		            <strong>Report Name: </strong> <span th:text="${r.reportName}"></span> | 
+					<strong>Descripton:</strong><span th:text="${r.description}"></span>
+		        </li>
+		    </ul>-->
+			
+			<div th:if="${#lists.isEmpty(labReports)}">
+			<p>No lab reports found.</p>
+			</div>
+
+
+			<ul th:if="${!#lists.isEmpty(labReports)}"
+			style="list-style-type:none;padding:0;">
+
+
+			<li th:each="r : ${labReports}"
+			style="margin-bottom:10px;">
+
+
+			<strong>Report Type:</strong>
+			<span th:text="${r.reportType}"></span><br>
+
+
+		<!--<strong>Description:</strong>
+			<span th:text="${r.description}"></span>-->	
+			</li>
+			</ul>
+	
+			</div>
+		    <div th:replace="~{fragments/footer :: footer}"></div>
+	</body>
+	</html>
