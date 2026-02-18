@@ -14,13 +14,13 @@
 	
 	<h2>Appointment Details</h2>
 
-    <p><strong>Doctor:</strong> <span th:text="${appointment.doctor.name}"></span></p>
+    <p><strong>Doctor:</strong> <span th:text="${appointments.doctor.name}"></span></p>
 
-    <p><strong>Patient:</strong> <span th:text="${appointment.patient.name}"></span></p>
+    <p><strong>Patient:</strong> <span th:text="${appointments.patient.name}"></span></p>
 
-    <p><strong>Date:</strong> <span th:text="appointment.datetime"></span></p>
+    <p><strong>Date:</strong> <span th:text="${appointments.datetime}"></span></p>
 
-    <a href="@{/patient/dashboard}">Back to </a><br>
+    <a th:href="@{/patient/dashboard}">Back to </a><br>
 	
 </body>
 </html>

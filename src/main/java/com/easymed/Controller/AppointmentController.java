@@ -37,86 +37,103 @@ public class AppointmentController {
 		this.doctorService = doctorService;
 	}
 	
-	
-		//Show form to book a new appointment 
-		@GetMapping("/book")
-		public String showBookingFrom(Model model, HttpSession session) {
-			User loggedInUser =(User) session.getAttribute("loggedInUser");
-			if(loggedInUser == null) {
-				return "redirect:/login";
-			}
-			
-			Patient patient = patientService.findByUser(loggedInUser);
-			if(patient == null) {
-				model.addAttribute("error", "Patient not found.");
-				return "error/404";
-			}
-			
-			List<Doctor> doctors = doctorService.getAllDoctors();
-			model.addAttribute("appointment", new Appointment());
-			model.addAttribute("doctors", doctors);
-			return "appointment/book";    //templates/appointments/list.html
+	//Open Appointment page
+	@GetMapping
+	public String openAppointmentPage(HttpSession session) {
+		
+		User loggedInUser =(User) session.getAttribute("loggedInUser");
+		if(loggedInUser == null) {
+			return "redirect:/login";
 		}
 		
-		//Handle appointment booking form submission
-		@PostMapping("/book")
-		public String bookAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("doctorId") int doctorId, HttpSession session, Model model) {
-			User loggedInUser =(User) session.getAttribute("loggedInUser");
-			if(loggedInUser == null) {
-				return "redirect:/login";
-			}
-			
-			Patient patient = patientService.findByUser(loggedInUser);
-			if(patient == null) {
-				model.addAttribute("error", "Patient not found.");
-				return "error/404";
-			}
-			
-			//Fetch doctor using the select ID
-			Optional<Doctor> optionalDoctor = doctorService.findById(doctorId);
-			if(optionalDoctor.isEmpty()) {
-				model.addAttribute("error", "Invalid doctor selected.");
-			}
-			
-			//Set details before saving
-			appointment.setPatient(patient);
-			
-			Doctor doctor = optionalDoctor.get();
-			appointment.setDoctor(doctor);    //extract the doctor object
-			
-			if(appointment.getStatus() == null || appointment.getStatus().isEmpty()) {
-				appointment.setStatus("Scheduled");
-			}
-			
-			if(appointment.getDatetime() == null) {
-				appointment.setDatetime(LocalDateTime.now().plusDays(1));   //Default: tomorrow
-			}
-			
-			//Save appointment
-			appointmentService.bookAppointment(appointment);
-			
-			//Redirect back to patient's appointment list page 
-			return "redirect:/patient/dashboard" ;
+		Patient patient = patientService.findByUser(loggedInUser);
+		if(patient == null) {
+			return "error/404";
 		}
-	
-		//Show all appointments for a specific patient
-		@GetMapping("/patient/{patientId}")
-		public String ViewappointmentsForPatient(@PathVariable("patientId") int patientId, Model model) {
-			List<Appointment> appointments = appointmentService.getAppointmentByPatient(patientId);
-			
-			if(appointments == null) {
-				return "error/404";
-			}
-			
-			model.addAttribute("appointments", appointments);
-			return "appointment/view";    //tamplates/appointment/list.html
-		}
+		
+		return "redirect:/appointment/patient/" + patient.getId();
+		
+	}
 
-		//Cancel an appointment by ID
-		@GetMapping("/{id}/cancel")
-		public String cancelAppointment(@PathVariable("id") int id) {
-			appointmentService.cancelAppointment(id);
-			//Redirect to homepage or dashboard after cancellation
-			return "redirect:/patient/dashboard";
+	//Show form to book a new appointment 
+	@GetMapping("/book")
+	public String showBookingFrom(Model model, HttpSession session) {
+		User loggedInUser =(User) session.getAttribute("loggedInUser");
+		if(loggedInUser == null) {
+			return "redirect:/login";
 		}
+		
+		Patient patient = patientService.findByUser(loggedInUser);
+		if(patient == null) {
+			model.addAttribute("error", "Patient not found.");
+			return "error/404";
+		}
+		
+		List<Doctor> doctors = doctorService.getAllDoctors();
+		model.addAttribute("appointment", new Appointment());
+		model.addAttribute("doctors", doctors);
+		return "appointment/book";    //templates/appointments/book.html
+	}
+	
+	//Handle appointment booking form submission
+	@PostMapping("/book")
+	public String bookAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("doctorId") int doctorId, HttpSession session, Model model) {
+		User loggedInUser =(User) session.getAttribute("loggedInUser");
+		if(loggedInUser == null) {
+			return "redirect:/login";
+		}
+		
+		Patient patient = patientService.findByUser(loggedInUser);
+		if(patient == null) {
+			model.addAttribute("error", "Patient not found.");
+			return "error/404";
+		}
+		
+		//Fetch doctor using the select ID
+		Optional<Doctor> optionalDoctor = doctorService.findById(doctorId);
+		if(optionalDoctor.isEmpty()) {
+			model.addAttribute("error", "Invalid doctor selected.");
+		}
+		
+		//Set details before saving
+		appointment.setPatient(patient);
+		
+		Doctor doctor = optionalDoctor.get();
+		appointment.setDoctor(doctor);    //extract the doctor object
+		
+		if(appointment.getStatus() == null || appointment.getStatus().isEmpty()) {
+			appointment.setStatus("Scheduled");
+		}
+		
+		if(appointment.getDatetime() == null) {
+			appointment.setDatetime(LocalDateTime.now().plusDays(1));   //Default: tomorrow
+		}
+		
+		//Save appointment
+		appointmentService.bookAppointment(appointment);
+		
+		//Redirect back to patient's appointment list page 
+		return "redirect:/patient/dashboard" ;
+	}
+
+	//Show all appointments for a specific patient
+	@GetMapping("/patient/{patientId}")
+	public String ViewappointmentsForPatient(@PathVariable("patientId") int patientId, Model model) {
+		List<Appointment> appointments = appointmentService.getAppointmentByPatient(patientId);
+		
+		if(appointments == null) {
+			return "error/404";
+		}
+		
+		model.addAttribute("appointments", appointments);
+		return "appointment/view";    //tamplates/appointment/view.html
+	}
+
+	//Cancel an appointment by ID
+	@GetMapping("/{id}/cancel")
+	public String cancelAppointment(@PathVariable("id") int id) {
+		appointmentService.cancelAppointment(id);
+		//Redirect to homepage or dashboard after cancellation
+		return "redirect:/patient/dashboard";
+	}
 }
