@@ -46,12 +46,25 @@ public class AppointmentController {
 			return "redirect:/login";
 		}
 		
-		Patient patient = patientService.findByUser(loggedInUser);
-		if(patient == null) {
-			return "error/404";
+		String role = loggedInUser.getRole();
+		
+		if("PATIENT".equals(role)) {
+			
+			Patient patient = patientService.findByUser(loggedInUser);
+			if(patient != null) {
+				return "redirect:/appointment/patient/" + patient.getId();
+			}
 		}
 		
-		return "redirect:/appointment/patient/" + patient.getId();
+		if("DOCTOR".equals(role)) {
+			
+			Doctor doctor = doctorService.findByUser(loggedInUser);
+			if(doctor != null) {
+				return "redirect:/appointment/doctor/" + doctor.getId();
+			}
+		}
+		
+		return "error/404";
 		
 	}
 
@@ -126,7 +139,22 @@ public class AppointmentController {
 		}
 		
 		model.addAttribute("appointments", appointments);
+		model.addAttribute("role", "PATIENT");
 		return "appointment/view";    //tamplates/appointment/view.html
+	}
+	
+	//Show all appointments for a specific 
+	@GetMapping("/doctor/{doctorId}")
+	public String viewAppointmentForDoctor(@PathVariable("doctorId") int doctorId, Model model ) {
+		List<Appointment> appointments = appointmentService.getAppointmentByDoctor(doctorId);
+		
+		if(appointments == null) {
+			return "error/404";
+		}
+		
+		model.addAttribute("appointments", appointments);
+		model.addAttribute("role", "DOCTOR");
+		return "appointment/view";
 	}
 
 	//Cancel an appointment by ID

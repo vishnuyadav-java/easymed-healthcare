@@ -14,13 +14,31 @@
 	
 	<h2>Appointment Details</h2>
 
-    <p><strong>Doctor:</strong> <span th:text="${appointments.doctor.name}"></span></p>
+   <!-- <p><strong>Doctor:</strong> <span th:text="${appointments.doctor.name}"></span></p>
 
     <p><strong>Patient:</strong> <span th:text="${appointments.patient.name}"></span></p>
 
     <p><strong>Date:</strong> <span th:text="${appointments.datetime}"></span></p>
-
-    <a th:href="@{/patient/dashboard}">Back to </a><br>
+	-->
+	
+	<table border="1">
+		<tr>
+			<th>Doctor</th>
+			<th>Patient</th>
+			<th>Date</th>
+			<th>Status</th>
+		</tr>
+		
+		<tr th:each="a: ${appointments}">
+			<td th:text="${a.doctor.name}"></td>
+			<td th:text="${a.patient.name}"></td>
+			<td th:text="${a.datetime}"></td>
+			<td th:text="${a.status}"></td>
+		</tr>
+	</table>	
+	
+    <a th:if="${role == 'PATIENT'}" th:href="@{/patient/dashboard}">Back to Dashboard</a><br>
+	<a th:if="${role == 'DOCTOR'}" th:href="@{/doctor/dashboard}">Back to Dashboard</a>
 	
 </body>
 </html>
